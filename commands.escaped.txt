@@ -1,0 +1,84 @@
+
+//// close the program
+
+//exit
+
+//
+
+//// request a list of all available symbols
+public string cmd5 => "send { \"method\":\"GET\", \"resource\":\"/trading/get_instruments\" }";
+
+//
+
+//// request a snapshot of trading tables
+public string cmd8 => "send { \"method\":\"GET\", \"resource\":\"/trading/get_model\", \"params\": { \"models\":[\"Offer\"] } }";
+public string cmd9 => "send { \"method\":\"GET\", \"resource\":\"/trading/get_model\", \"params\": { \"models\":[\"Account\"] } }";
+public string cmd10 => "send { \"method\":\"GET\", \"resource\":\"/trading/get_model\", \"params\": { \"models\":[\"Offer\",\"OpenPosition\",\"ClosedPosition\",\"Order\",\"Account\", \"Summary\",\"LeverageProfile\",\"Properties\"] } }";
+
+//
+
+//// update symbols subscribed to in Offers tables
+public string cmd13 => "send { \"method\":\"POST\", \"resource\":\"/trading/update_subscriptions\", \"params\": { \"symbol\":\"EUR/USD\", \"visible\":true } }";
+public string cmd14 => "send { \"method\":\"POST\", \"resource\":\"/trading/update_subscriptions\", \"params\": { \"symbol\":\"EUR/USD\", \"visible\":false } }";
+
+//
+
+//
+
+//// open a position with market order
+public string cmd18 => "send { \"method\":\"POST\", \"resource\":\"/trading/open_trade\", \"params\": { \"account_id\":\"1027808\", \"symbol\":\"EUR/USD\", \"is_buy\":true, \"amount\":1, \"time_in_force\":\"FOK\" } }";
+public string cmd19 => "send { \"method\":\"POST\", \"resource\":\"/trading/open_trade\", \"params\": { \"account_id\":\"1027808\", \"symbol\":\"EUR/USD\", \"is_buy\":true, \"amount\":10, \"time_in_force\":\"FOK\" } }";
+
+//
+
+//// close a position with market order
+public string cmd22 => "send { \"method\":\"POST\", \"resource\":\"/trading/close_trade\", \"params\": { \"amount\":1, \"time_in_force\":\"GTC\", \"trade_id\":\"123778283\" } }";
+
+//
+
+//// create an entry order
+public string cmd25 => "send { \"method\":\"POST\", \"resource\":\"/trading/create_entry_order\", \"params\": { \"account_id\":\"1027808\", \"symbol\":\"EUR/USD\", \"is_buy\":true, \"rate\":1.22, \"amount\":10 } }";
+
+//
+
+//// modify waiting order
+public string cmd28 => "send { \"method\":\"POST\", \"resource\":\"/trading/change_order\", \"params\": { \"order_id\":\"241163945\", \"rate\":1.21, \"amount\":2 } }";
+public string cmd29 => "send { \"method\":\"POST\", \"resource\":\"/trading/change_order\", \"params\": { \"order_id\":\"241163945\", \"rate\":1.22, \"amount\":1 } }";
+
+//
+
+//// delete waiting order
+public string cmd32 => "send { \"method\":\"POST\", \"resource\":\"/trading/delete_order\", \"params\": { \"order_id\":\"241163945\" } }";
+
+//
+
+//// request historical price data
+public string cmd35 => "send { \"method\":\"GET\", \"resource\":\"/candles/1/m1\", \"params\": { \"num\":10 } }";
+public string cmd36 => "send { \"method\":\"GET\", \"resource\":\"/candles/1/m1\", \"params\": { \"num\":1, \"from\":1519084679, \"to\":1519430400 } }";
+public string cmd37 => "send { \"method\":\"GET\", \"resource\":\"/candles/1/d1\", \"params\": { \"num\":1, \"from\":1515024000, \"to\":1516752000 } }";
+public string cmd38 => "send { \"method\":\"GET\", \"resource\":\"/candles/1/d1\", \"params\": { \"num\":1, \"from\":1515456000, \"to\":1517529600 } }";
+
+//
+
+//--- Live Prices module ---
+public string cmd41 => "load {\"filename\":\"liveprices.js\"}";
+
+//
+public string cmd43 => "price_subscribe {\"pairs\":\"EUR/USD\"}";
+public string cmd44 => "price_subscribe {\"pairs\":[\"GBP/USD\",\"USD/JPY\"]}";
+public string cmd45 => "price_unsubscribe {\"pairs\":[\"EUR/USD\",\"GBP/USD\",\"USD/JPY\"]}";
+
+//
+
+//--- Trading Tables module ---
+public string cmd48 => "load {\"filename\":\"tradingtables.js\"}";
+
+//
+public string cmd50 => "table_subscribe {\"tables\":\"Offer\"}";
+public string cmd51 => "table_subscribe {\"tables\":[\"Offer\",\"Order\"]}";
+public string cmd52 => "table_unsubscribe {\"tables\":[\"Offer\",\"Order\"]}";
+
+//
+
+//
+public string cmd55 => "send { \"method\":\"POST\", \"resource\":\"/trading/subscribe\", \"params\": { \"models\":\"Order\" } }";

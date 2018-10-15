@@ -1,4 +1,10 @@
 # Ignore configuration files that may contain sensitive information.
+
+#ignore config with my token !!!
+config.js
+
+
+
 sites/*/*settings*.php
 sites/example.sites.php
 
